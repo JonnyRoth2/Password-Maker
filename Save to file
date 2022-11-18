@@ -1,8 +1,11 @@
 def write_password(password:str):
-    '''Helper function but can really be useful anywhere to save a python output to a file'''
+    newlines=''
     user_file=input("please input your file name ")
-    what_for=input("please enter what this password goes to")
-    words=[what_for, '-', password, '\n']
-    with open(user_file,'w') as f:
+    what_for=input("please enter what this password goes to ")
+    words=['\n',what_for, '-', password,'\n']
+    with open(user_file,'r+') as f:
+        for line in f:
+            if len(line)>0:
+                newlines+'\n'
         for word in words:
-            f.write(word)
+            f.write(newlines+word)
