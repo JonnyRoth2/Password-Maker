@@ -64,12 +64,16 @@ def create_password():
 
 
 def write_password(password:str):
+    newlines=''
     user_file=input("please input your file name ")
     what_for=input("please enter what this password goes to ")
-    words=[what_for, '-', password, '\n']
-    with open(user_file,'w') as f:
+    words=['\n',what_for, '-', password,'\n']
+    with open(user_file,'r+') as f:
+        for line in f:
+            if len(line)>0:
+                newlines+'\n'
         for word in words:
-            f.write(word)
+            f.write(newlines+word)
 def main():
     begin=input("Would you like to create a password y for yes n for no ")
     if begin=='y':
